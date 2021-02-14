@@ -68,7 +68,7 @@ b.	This is what it includes –
 •	A choosePic function for every time the window loads
 window.onload = choosePic;
 •	An array variable to store the links to the stack of images I want displayed every time the window loads
-var myPix = new Array("https://annapurani93.files.wordpress.com/2021/01/rf1.png","https://annapurani93.files.wordpress.com/2021/01/rf2-1.png","https://annapurani93.files.wordpress.com/2021/01/rf3-1.png","https://annapurani93.files.wordpress.com/2021/01/rf4.png","https://annapurani93.files.wordpress.com/2021/01/rf5.png", "https://annapurani93.files.wordpress.com/2021/01/rf6.png", "https://annapurani93.files.wordpress.com/2021/01/rf7-1.png", "https://annapurani93.files.wordpress.com/2021/01/rf8.png","https://annapurani93.files.wordpress.com/2021/01/rf9.png", "https://annapurani93.files.wordpress.com/2021/01/rf10.png");
+var myPix = new Array(“https://xyz/rf1.png","https://xyz/rf2-1.png","https://xyz/rf3-1.png","https://xyz/rf4.png","https://xyz/rf5.png", “https://xyz/rf6.png", “https://xyz/rf7.png", “https://xyz/rf8.png","https://xyz/rf9.png", “https://xyz/rf10.png");
 •	The choosePic function will pick one random image from the myPix array and resize, align the image to the specifications I have mentioned in the HTML file and display in the new tab
 function choosePic() {
      var randomNum = Math.floor(Math.random() * myPix.length);
