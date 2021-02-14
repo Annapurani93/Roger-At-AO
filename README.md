@@ -1,1 +1,97 @@
-# Roger-At-AO
+.
+How I created and published my first Chrome extension
+Chrome extensions are pretty useful tools and all you need is a little bit of HTML, CSS and Javascript knowledge to build them. I built one recently called “Roger at AO”, so here’s an capsule-sized explainer of how I went about building it
+Let’s break the process into three
+1.	Requirement
+2.	Code and files
+a.	The Manifest (.json) file
+b.	The HTML (.html) file
+c.	The JavaScript (.js) file
+d.	Icon for the extension
+3.	Testing the extension
+4.	Submission and approval
+
+
+1.	Requirement: 
+
+First things first. Before you begin to build your Chrome Extension, be very clear about why you are building and what you intend for it to do. 
+
+My goal was this – I wanted to create an extension that would display some trivia about tennis player Roger Federer at the Australian Open every time I open a new tab. And I wanted to build this, because, this is the first time in 22 years Federer wouldn’t be playing the tournament (all the more reason why I wanted the extension to be in the Chrome web store for everyone to access before February 8th).
+
+So be sure of what you want your extension do before you start developing it – it will make your coding process way easier.
+
+2.	Code and files: 
+
+Now that you know why you are building your extension, let’s get to the code. 
+
+Create a folder to place all your code files in – you will have to zip and upload this when submit your extension for approval from the Chrome web store.
+Now, in this folder, you will ideally need only three files – the Manifest file, the HTML file and the logo for the extension.
+I went ahead and created a JavaScript file because I wanted a random image generator for mine. 
+I will now take you through my code, so you can understand how I went about building my extension and the significance of the Manifest file, HTML file and the JavaScript file.
+All the code was written on notepad and saved with the necessary extensions
+The Manifest File
+a.	Create a file called manifest.json
+b.	Now, this file will tell Chrome about the title of the extension, the icon for the extension and what it will do.
+c.	Here’s my snippet
+{
+ "name": "Roger At AO",
+ "version": "0.0.1",
+ "description": "A Chromium extension to display interesting trivia about Roger Federer at the Australian Open",
+ "manifest_version": 2,
+"browser_action": {
+  "default_icon": "RF At AO.png"
+},
+d.	Now this section, below, is to override the default tab in my window with the code I write (“popup.html” is the name of my HTML file)
+ "chrome_url_overrides":{
+ "newtab":"popup.html"
+ }
+}
+      The HTML File
+a.	My HTML file is popup.html (the one I’ve mentioned above in my Manifest file)
+b.	Here’s what it has
+•	The title of the extension
+<!DOCTYPE html>
+<html>
+<head><title>Roger At AO</title></head>
+<body>
+•	I am also pulling in the JavaScript file here because it has the random image generator, which will display a different (random) image containing some trivia about Federer every time I open a new Chrome tab
+<script src="index.js"></script>
+•	A little bit of CSS – To align my image in the centre of the window and to also adjust the size of the image
+<div style="text-align: center">
+<img id="myPicture" width="600" height="600" align="center">
+</div>
+</body>
+</html>
+    The JavaScript File
+a.	My JavaScript file (index.js) is primarily for the random image generator
+b.	This is what it includes – 
+•	A choosePic function for every time the window loads
+window.onload = choosePic;
+•	An array variable to store the links to the stack of images I want displayed every time the window loads
+var myPix = new Array("https://annapurani93.files.wordpress.com/2021/01/rf1.png","https://annapurani93.files.wordpress.com/2021/01/rf2-1.png","https://annapurani93.files.wordpress.com/2021/01/rf3-1.png","https://annapurani93.files.wordpress.com/2021/01/rf4.png","https://annapurani93.files.wordpress.com/2021/01/rf5.png", "https://annapurani93.files.wordpress.com/2021/01/rf6.png", "https://annapurani93.files.wordpress.com/2021/01/rf7-1.png", "https://annapurani93.files.wordpress.com/2021/01/rf8.png","https://annapurani93.files.wordpress.com/2021/01/rf9.png", "https://annapurani93.files.wordpress.com/2021/01/rf10.png");
+•	The choosePic function will pick one random image from the myPix array and resize, align the image to the specifications I have mentioned in the HTML file and display in the new tab
+function choosePic() {
+     var randomNum = Math.floor(Math.random() * myPix.length);
+     document.getElementById("myPicture").src = myPix[randomNum];
+}
+And that’s it. The coding part of the extension is done.
+3. Testing the extension: 
+•	Click on Extensions in your Chrome window and select the Manage Extensions option
+•	Turn on the Developer Mode option in the top right corner of the Extensions window
+•	Click on the Load Unpacked option in the top left corner of the Extensions window
+•	Select the folder that has your code files and the logo
+•	Open a New Tab in your Chrome window. Google will ask if you want to change it back or to keep the extension. Choose Keep It and test out what you built.
+4.  Submission and approval:
+For your Chrome extension to be available for the public to use, it needs to be in the web store. Here’s the process to get your Chrome extension published in the web store.
+•	Register yourself as a developer here - https://chrome.google.com/webstore/devconsole
+•	You will have to pay a small one-time fee for registration (~$5)
+•	Once registered, go to the Chrome Developer Dashboard - https://chrome.google.com/webstore/developer/dashboard
+•	In your dashboard, click on the New Item option on the top right
+•	Zip the folder that has your code files and the logo for your extension and upload it there
+•	You will be directed to the Store Listing page that will ask you to fill in details such as title of the extension, its purpose, category, language, icon and a few screenshots of how it works 
+•	Next, go to the Privacy Practices page right below and check if you adhere to all their disclosures about data and user privacy
+•	Next, click on the Payments and Distribution tab and select who you want the extension to be available for, which geographies can access it and if it is for free or if there are any in-store purchases that the user has to make
+•	Once done, click on the Submit for Review button on the top right corner
+•	If there are any errors, or if you’ve forgotten to fill in something/if you have to upload something again, Google will prompt you. Fill it all in and submit again
+After that, all you’ve to do is, wait. Google normally takes 2-3 business days to approve an   extension. 
+Check after 48 hours, and voila! Your extension will be ready to use, hopefully!
